@@ -104,13 +104,11 @@ async function login(username,password){
 
 
 async function register(username,password,email,fullname,linkedin){
-    ins = await database.exec()
     try {
         value = await Joischema.validateAsync({username: username,password:password,email:email,fullname:fullname});
     }
     catch (err) {
         console.log(err)
-        await ins.end()
         return new Promise(resolve => {
             resolve(['Invalid',400])
           });
@@ -122,6 +120,7 @@ async function register(username,password,email,fullname,linkedin){
     fullname =  encodeURIComponent(fullname)
     linkedin = linkedin.toLowerCase()
     linkedin = encodeURIComponent(linkedin)
+    ins = await database.exec()
     try{
         var data = await ins.query('SELECT * FROM user_reg WHERE username = $1',[username])
         }
