@@ -85,8 +85,8 @@
                 <div class="test text-center">
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="card h-100 c1">
-                                <div class="card-body">
+                            <div class="card h-100 c1" onclick="openInNewTab('https://www.focusonthefamily.com/marriage/4-animals-personality-test/');">
+                                <div class="card-body" >
                                     <div class="test1">
                                         <h1>LOGB</h1>
                                         <p class="res">{{abt.LOGB}}</p>
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card h-100 c2">
+                            <div class="card h-100 c2" onclick="openInNewTab('https://www.verywellmind.com/the-myers-briggs-type-indicator-2795583#toc-the-mbti-types');">
                                 <div class="card-body">
                                     <div class="test1">
                                         <h1>MBTI</h1>
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card h-100 c3">
+                            <div class="card h-100 c3" onclick="openInNewTab('https://www.communicationtheory.org/the-johari-window-model/');">
                                 <div class="card-body">
                                     <div class="test1">
                                         <h1>Johari Window</h1>
@@ -147,6 +147,11 @@
             $scope.abt =<%-JSON.stringify(everything)%>;
         });
         
+    </script>
+    <script>
+        function openInNewTab(url) {
+            window.open(url, '_blank').focus();
+        }
     </script>
 </body>
 
