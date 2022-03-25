@@ -1,0 +1,121 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>MBTI</title>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="/LOGB.css"/>
+
+</head>
+<body  class='snippet-body'ng-app="MyApp" ng-controller="MyController">
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-10 col-lg-10">
+                <div class="border">
+                    <div class="question bg-white p-3 border-bottom">
+                        <div class="d-flex flex-row justify-content-between align-items-center mcq">
+                            <h4>MBTI Test</h4>
+                        </div>
+                    </div>
+                    <div class="question bg-white p-3 border-bottom" ng-value="i">
+                        <div class="d-flex flex-row align-items-center question-title">
+                            <h3 class="textq">Q.</h3>
+                            <h5 class="mt-1 ml-2">{{mbti[i].Question}}</h5>
+                        </div>
+                        <div class="answers" >
+                            <div class="ans ml-2">
+                                <label class="radio"> <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1"> <span>{{mbti[i].optionA[0]}}</span>
+                                </label>
+                            </div>
+                            <div class="ans ml-2">
+                                <label class="radio"> <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="2"> <span>{{mbti[i].optionB[0]}}</span>
+                                </label>
+                            </div>
+                            <div class="ans ml-2" ng-if="chktru(i)">
+                                <label class="radio"> <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="3"> <span>{{mbti[i].optionC[0]}}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between align-items-center p-3 bg-white">
+                        <button class="btn btn-primary d-flex align-items-center btn-default" ng-click="incrementcount()" type="button">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+    <script>
+        var app = angular.module('MyApp',[]);
+        app.controller('MyController',function($scope,$http){
+            $scope.mbti = [<%- data %>];
+            console.log($scope.mbti);
+            // console.log($scope.mbti[0].OptionC);
+            $scope.chktru = function(t){
+			    if ($scope.mbti[t].optionC == 0){
+                    $opc=false;
+                }
+                else{
+                    $opc=true;
+                }
+                return $opc;
+		    }
+
+            // $scope.statement = function(t){
+			//     if ($scope.mbti[t].Q_exixts == false){
+            //         $scope.mbti[t].Q_statement="select the adj that suits yiu";
+            //     }
+            //     return $scope.mbti[t].Q_statement;
+		    // }
+
+            $scope.sendmbti = {}
+            $scope.i = 0;
+            $scope.incrementcount = function(){
+                var qno = $scope.i + 1;
+                var val=document.querySelector('input[name="flexRadioDefault"]:checked').value;
+                console.log(val);
+                $scope.sendmbti[String(qno)] = String(val);
+                console.log($scope.sendmbti);
+			    $scope.i++;
+                if($scope.i >=$scope.mbti.length){
+                    $scope.submit();
+                }
+		    }
+
+            $scope.submit = function(){
+                            //   url                       data                 
+                    $http.post('/tests/mbti', JSON.stringify($scope.sendmbti)).then(function (response) {
+                    if (response.data){
+                        // $scope.msg = "Post Data Submitted Successfully!";
+                        console.log(response.data);
+                        if(response.data[1]== 200){
+                            window.location.href = '/about';
+                        }
+                        else{
+                            window.location.href = '/error/test';
+                        }
+                    }
+                },  
+                function (response) {
+                    $scope.msg = "Service not Exists";
+                    $scope.statusval = response.status;
+                    $scope.statustext = response.statusText;
+                    $scope.headers = response.headers();
+                    // console.log($scope.msg);
+                    // console.log($scope.statusval);
+                    // console.log($scope.statustext);
+                    // console.log($scope.headers);
+                    // window.location.href = 'submitted.html';
+                });
+            }
+        
+        
+        });
+        
+    </script>
+
+</body>
+</html>

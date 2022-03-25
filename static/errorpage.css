@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Lobster&family=Patua+One&family=Rubik&family=Sniglet&display=swap');
+:root{
+    --Snigle-font:"Sniglet",cursive;
+    --Rubik:"Rubik",cursive;
+    --Patua:"Patua One",cursive;
+    --Lobster:"Lobster",cursive;
+    --light-black:#2e2c2caf;
+    /* --bggr:  linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%); */
+    --bggr: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
+
+    --light-gray:rgba(255,255,255,0.7);
+}
+
+body {
+    background-color: #7ca0f6;
+  }
+
+.r1{
+    padding: 2.5em;
+}
+.sec1 {
+    height: 90vh;
+}
+.col-md-7{
+    padding: 10vmin 1vmin;
+    font-family: var(--Rubik);
+    color: white;
+}
+
+.col-md-7 .starting{
+    position: relative;
+    top: 60%;
+    transform: translate(0, -50%);
+}
+
+.col-md-5 img{
+    width: 100%;
+    position: relative;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container .col-md-7 h1{
+    font-size: 10vmin;
+    font-weight: bold;
+    padding: 0.1em 0em;
+}
+
+.container .col-md-7 p{
+   padding: 1vmin;
+   font-size: 3vmin;
+}
+
+.btn-link{
+    padding: 0;
+    color: white;
+    font-size: 2.5vmin;
+    text-decoration: none;
+}
+
+.btn-link:hover{
+    color: #ff917e;
+}
+
+@media only screen and (max-width: 768px){
+    .row{
+        margin: 1vmin;
+    }
+
+    .col-md-7{
+        padding: 15vmin 1vmin;
+        padding-bottom: 1vmin;
+    }
+    .col-md-5{
+        padding: 0;
+    }
+    .r1{
+        padding: 1em;
+    }
+    .container .col-md-7 h1{
+        font-size: 13vmin;
+        font-weight: bold;
+        padding: 0.1em 0em;
+    }
+    .btn-link{
+        color: white;
+        font-size: 4vmin;
+        text-decoration: none;
+    }
+    .container .col-md-7 p{
+        font-size: 5vmin;
+     }
+}

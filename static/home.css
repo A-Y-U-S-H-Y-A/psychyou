@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Lobster&family=Patua+One&family=Rubik&family=Sniglet&display=swap');
+:root{
+    --Snigle-font:"Sniglet",cursive;
+    --Rubik:"Rubik",cursive;
+    --Patua:"Patua One",cursive;
+    --Lobster:"Lobster",cursive;
+    --light-black:#2e2c2caf;
+    /* --bggr:  linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%); */
+    --bggr: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
+
+    --light-gray:rgba(255,255,255,0.7);
+}
+
+*{
+    box-sizing: border-box;
+}
+#content{
+    overflow-x: hidden;
+    background-color: #f2edf4;
+}
+
+:root{
+    --light-black:#2e2c2caf;
+    /* --bggr:  linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%); */
+    --bggr: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
+    --light-gray:rgba(255,255,255,0.7);
+}
+
+.test .row, .section1 .row {
+    margin: 1vw;
+}
+
+.test .row{
+    font-family: var(--Rubik);
+}
+
+.test .card{
+    border-radius: 8px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s;
+  
+}
+.test .card:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.01);
+  }
+  
+.test .c1{
+    background: radial-gradient(#1fe4f5, #3fbafe);
+}
+.test .c2{
+    background: radial-gradient(#fbc1cc, #fa99b2);
+}
+.test .c3{
+    background: radial-gradient(#76b2fe, #b69efe);
+}
+.test .card-body{
+    height: 13rem;
+}
+.card-body{
+    position: relative;
+}
+.card-body .test1>h1{
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.section1{
+    font-family: var(--Rubik);
+}
+
+.section3 .row {
+    margin: 2vw 1vw;
+}
+canvas .canvasjs-chart-canvas {
+    display: inline !important;
+    align-items: center ;
+}
+
+@media only screen and (max-width: 835px) {
+   
+
+header .tog{
+    padding-left: 1rem !important;
+}
+
+.test .row, .section1 .row {
+    margin: 2vw;
+}
+.col-md-12{
+    margin-top: 2vw;
+}
+
+.section3 .row {
+    margin: 4vw 2vw;
+}
+
+.col-md-4 {
+    margin-bottom: 3vw !important;
+}
+.test .card-body{
+    height: 10rem;
+}
+
+.col-md-7{
+    margin-bottom: 4vw !important;
+}
+  
+}

@@ -1,0 +1,106 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Johari Window</title>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <link rel="stylesheet" href="/LOGB.css"/>
+
+</head>
+<body  class='snippet-body'ng-app="MyApp" ng-controller="MyController">
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-10 col-lg-10">
+                <div class="border">
+                    <div class="question bg-white p-3 border-bottom">
+                        <div class="d-flex flex-row justify-content-between align-items-center mcq" >
+                            <h4 >Johari Window Test</h4>
+                        </div>
+                    </div>
+                    <div class="question bg-white p-3 border-bottom" ng-value="i">
+                        <div class="d-flex flex-row align-items-center question-title">
+                            <h3 class="textq">Q.</h3>
+                            <h5 class="mt-1 ml-2">Slide towards the inclination</h5>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between align-items-center p-3 bg-white" style="text-align: center;">
+                            <p class="d-flex align-items-center p1" style="width: 40%;">{{jwin[i].Q1}}</p>
+                            <p class="align-items-center p2" style="width: 40%;">{{jwin[i].Q2}}</p>
+                        </div> 
+                        <div class="d-flex flex-row align-items-center justify-content-center">
+                            <div class="slidecontainer">
+                                <input type="range" min="1" max="5" value="1" class="slider" id="rangeInput" name="rangeInput" oninput="amount.value=rangeInput.value">
+                                <p class="val">Value: <output name="amount" id="amount" for="rangeInput">1</output></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between align-items-center p-3 bg-white">
+                        <button class="btn btn-primary d-flex align-items-center btn-default" ng-click="incrementcount()" type="button">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+    <script>
+        var app = angular.module('MyApp',[]);
+        app.controller('MyController',function($scope,$http){
+            $scope.jwin = [<%- data %>];
+            console.log($scope.jwin);
+            
+            $scope.sendjohari = {}
+            $scope.i = 0;
+            $scope.incrementcount = function(){
+                //var qno=$scope.mbti[$scope.i].Q_no;
+                var qno = $scope.i + 1;
+                var val = amount.value;
+                $scope.sendjohari[String(qno)] = String(val);
+                console.log($scope.sendjohari);
+			    $scope.i++;
+                document.getElementById("rangeInput").value = "1";
+                amount.value=1;
+                if($scope.i >=$scope.jwin.length){
+                    $scope.submit();
+                }
+		    }
+            $scope.submit = function(){
+                            //   url                       data                 
+                $http.post('/tests/johari', JSON.stringify($scope.sendjohari)).then(function (response) {
+                    if (response.data){
+                        // $scope.msg = "Post Data Submitted Successfully!";
+                        console.log(response.data);
+                        if(response.data[1]== 200){
+                            window.location.href = '/about';
+                        }
+                        else{
+                            window.location.href = '/error/test';
+                        }
+                    }
+                }, 
+                function (response) {
+                    $scope.msg = "Service not Exists";
+                    $scope.statusval = response.status;
+                    $scope.statustext = response.statusText;
+                    $scope.headers = response.headers();
+                    // console.log($scope.msg);
+                    // console.log($scope.statusval);
+                    // console.log($scope.statustext);
+                    // console.log($scope.headers);
+                    // window.location.href = 'submitted.html';
+                });
+            }
+        
+        });
+        
+    </script>
+    <script>
+        function updateTextInput(val) {
+            document.getElementById('myid').value=val; 
+          }
+    </script>
+        
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Lobster&family=Patua+One&family=Rubik&family=Sniglet&display=swap');
+:root{
+    --Snigle-font:"Sniglet",cursive;
+    --Rubik:"Rubik",cursive;
+    --Patua:"Patua One",cursive;
+    --Lobster:"Lobster",cursive;
+    --light-black:#2e2c2caf;
+    /* --bggr:  linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%); */
+    --bggr: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
+
+    --light-gray:rgba(255,255,255,0.7);
+}
+
+*{
+    box-sizing: border-box;
+}
+#content{
+    overflow-x: hidden;
+    background-color: #f2edf4;
+}
+
+:root{
+    --light-black:#2e2c2caf;
+    /* --bggr:  linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%); */
+    --bggr: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
+    --light-gray:rgba(255,255,255,0.7);
+}
+
+.test .row, .section1 .row {
+    margin: 1vw;
+}
+
+.test .row{
+    font-family: var(--Rubik);
+}
+
+.section1{
+    font-family: var(--Rubik);
+}
+
+.r2{
+    padding: 1svw;
+}
+th{
+    font-size: 1em;
+    padding: 1vw !important;
+    text-align: center;
+    font-size: 1.5em;
+
+}
+
+td {
+    line-height: 1em;
+    min-height: 1em;
+    height: 2em;
+    font-size: 1.5em;
+    text-align: center;
+
+ }
+
+.btn-link{
+    font-size: 1em;
+    color: black;
+    text-decoration: none;
+}
+@media only screen and (max-width: 835px) {
+   
+
+header .tog{
+    padding-left: 1rem !important;
+}
+
+.col-md-12{
+    margin-top: 2vw;
+}
+th{
+    font-size: 1em;
+    padding: 0 !important;
+}
+
+
+  
+}
