@@ -155,7 +155,13 @@ async function register(username,password,email,fullname,linkedin){
     
     newid = await idgen.idgen()
     password = hashing(password)
-    await ins.query('INSERT INTO user_reg(user_id,username,password,name,email,linkedid) VALUES ($1,$2,$3,$4,$5,$6)',[newid,username,password,fullname,email,linkedin])
+    try{
+        await ins.query('INSERT INTO user_reg(user_id,username,password,name,email,linkedid) VALUES ($1,$2,$3,$4,$5,$6)',[newid,username,password,fullname,email,linkedin])
+    }
+    catch(err){
+        ins = await database.exec()
+        await ins.query('INSERT INTO user_reg(user_id,username,password,name,email,linkedid) VALUES ($1,$2,$3,$4,$5,$6)',[newid,username,password,fullname,email,linkedin])
+    }
     await ins.end()
     return new Promise(resolve => {
         resolve(['Success',200])
